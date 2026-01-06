@@ -1,0 +1,48 @@
+#include <cmath>
+#include "Circle.h"
+
+Circle::Circle() : Shape(), center(0, 0), radius(1) {
+}
+
+Circle::Circle(std::string color, Point2D c, double r) : Shape(color), center(c), radius(r) {
+}
+
+Point2D Circle::get_center() const {
+    return center;
+}
+
+void Circle::set_center(Point2D p) {
+    center = p;
+}
+
+double Circle::get_radius() const {
+    return radius;
+}
+
+void Circle::set_radius(double r) {
+    radius = r;
+}
+
+double Circle::area() const {
+    return 3.141592 * std::pow(radius, 2);
+}
+
+double Circle::perimeter() const {
+    return 2 * 3.141592 * radius;
+}
+
+void Circle::translate(double incX, double incY) {
+    center.x += incX;
+    center.y += incY;
+}
+
+void Circle::print() {
+    std::cout << *this;
+}
+
+std::ostream& operator<<(std::ostream &out, const Circle &c) {
+    out << "[Circle: color = " << c.get_color() 
+        << "; center = " << c.center 
+        << "; radius = " << c.radius << "]";
+    return out;
+}
